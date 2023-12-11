@@ -174,7 +174,11 @@ class MainActivity : ComponentActivity() {
 
                         // SimpleRecyclerView()
 
-                        SuperHeroView()
+                        //SuperHeroView()
+                        //SuperHeroGridView()
+                        // SuperHeroSpecialControlsView()
+                        // SuperHeroStickyView()
+                        ScaffoldExample()
                     }
                 }
             }
