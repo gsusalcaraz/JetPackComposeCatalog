@@ -107,38 +107,38 @@ class MainActivity : ComponentActivity() {
 
                         // MyRadioButtonList(selected) { selected = it }
 
-/*
-                        Column {
-                            var show by remember { mutableStateOf(false) }
+                        /*
+                                                Column {
+                                                    var show by remember { mutableStateOf(false) }
 
-                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                Button(onClick = { show = true }) {
-                                    Text(text = "Mostrar diálogo")
-                                }
-                            }
-                            MyAlertDialog(
-                                show = show,
-                                onDismiss = { show = false },
-                                onConfirm = { Log.i("Gsus", "Click") })
-                        }
- */
-/*
-                        Column {
+                                                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                                        Button(onClick = { show = true }) {
+                                                            Text(text = "Mostrar diálogo")
+                                                        }
+                                                    }
+                                                    MyAlertDialog(
+                                                        show = show,
+                                                        onDismiss = { show = false },
+                                                        onConfirm = { Log.i("Gsus", "Click") })
+                                                }
+                         */
+                        /*
+                                                Column {
 
-                            var show by remember { mutableStateOf(false) }
+                                                    var show by remember { mutableStateOf(false) }
 
-                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                Button(onClick = { show = true }) {
-                                    Text(text = "Mostrar diálogo")
-                                }
-                            }
-                            MySimpleCustomDialog(
-                                show = show,
-                                onDismiss = { show = false })
-                        }
+                                                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                                        Button(onClick = { show = true }) {
+                                                            Text(text = "Mostrar diálogo")
+                                                        }
+                                                    }
+                                                    MySimpleCustomDialog(
+                                                        show = show,
+                                                        onDismiss = { show = false })
+                                                }
 
 
- */
+                         */
                         /*
                          Column {
 
@@ -155,6 +155,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                          */
+                        /*
                         Column {
 
                             var show by remember { mutableStateOf(false) }
@@ -168,6 +169,12 @@ class MainActivity : ComponentActivity() {
                                 show = show,
                                 onDismiss = { show = false })
                         }
+
+                         */
+
+                        // SimpleRecyclerView()
+
+                        SuperHeroView()
                     }
                 }
             }
