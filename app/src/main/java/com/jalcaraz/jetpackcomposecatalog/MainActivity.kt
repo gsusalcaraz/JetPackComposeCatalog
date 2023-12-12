@@ -1,7 +1,6 @@
 package com.jalcaraz.jetpackcomposecatalog
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -9,7 +8,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,19 +16,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.rounded.AddCircle
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
@@ -45,7 +37,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonColors
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -65,9 +56,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.TextStyle
@@ -77,6 +66,12 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.jalcaraz.jetpackcomposecatalog.Model.Routes
 import com.jalcaraz.jetpackcomposecatalog.ui.theme.JetPackComposeCatalogTheme
 
 class MainActivity : ComponentActivity() {
@@ -93,93 +88,123 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    val myOptions = getOptions(listOf("Jesus", "Ejemplo", "Pikachu"))
+                    val navigationController = rememberNavController()
+                    NavHost(
+                        navController = navigationController,
+                        startDestination = Routes.Pantalla1.route
+                    ) {
+                        composable(Routes.Pantalla1.route) { Screen1(navigationController) }
+                        composable(Routes.Pantalla2.route) { Screen2(navigationController) }
+                        composable(Routes.Pantalla3.route) { Screen3(navigationController) }
+                        composable(
+                            Routes.Pantalla4.route,
+                            arguments = listOf(navArgument("age") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            Screen4(
+                                navigationController,
+                                backStackEntry.arguments?.getInt("age") ?: 0
+                            )
+                        }
+                        composable(
+                            Routes.Pantalla5.route,
+                            arguments = listOf(navArgument("name") { defaultValue = "Pepe" })
+                        )
+                            { backStackEntry ->
+                                Screen5(
+                                    navigationController,
+                                    backStackEntry.arguments?.getString("name")
+                                )
+                            }
+
+                    }
+
+
+                    // val myOptions = getOptions(listOf("Jesus", "Ejemplo", "Pikachu"))
+                    // Column {
+
+                    // var myText by remember { mutableStateOf("Jesus") }
+                    // MyTextField(myText) { myText = it }
+
+                    // MyTristatusCheckBox()
+
+                    //myOptions.forEach {
+                    //   MyCheckBoxWithTextCompleted(it)
+                    //}
+
+                    // MyRadioButtonList(selected) { selected = it }
+
+                    /*
+                                            Column {
+                                                var show by remember { mutableStateOf(false) }
+
+                                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                                    Button(onClick = { show = true }) {
+                                                        Text(text = "Mostrar diálogo")
+                                                    }
+                                                }
+                                                MyAlertDialog(
+                                                    show = show,
+                                                    onDismiss = { show = false },
+                                                    onConfirm = { Log.i("Gsus", "Click") })
+                                            }
+                     */
+                    /*
+                                            Column {
+
+                                                var show by remember { mutableStateOf(false) }
+
+                                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                                    Button(onClick = { show = true }) {
+                                                        Text(text = "Mostrar diálogo")
+                                                    }
+                                                }
+                                                MySimpleCustomDialog(
+                                                    show = show,
+                                                    onDismiss = { show = false })
+                                            }
+
+
+                     */
+                    /*
+                     Column {
+
+                        var show by remember { mutableStateOf(false) }
+
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Button(onClick = { show = true }) {
+                                Text(text = "Mostrar diálogo")
+                            }
+                        }
+                         MyCustomDialog(
+                            show = show,
+                            onDismiss = { show = false })
+                    }
+
+                     */
+                    /*
                     Column {
 
-                        // var myText by remember { mutableStateOf("Jesus") }
-                        // MyTextField(myText) { myText = it }
+                        var show by remember { mutableStateOf(false) }
 
-                        // MyTristatusCheckBox()
-
-                        //myOptions.forEach {
-                        //   MyCheckBoxWithTextCompleted(it)
-                        //}
-
-                        // MyRadioButtonList(selected) { selected = it }
-
-                        /*
-                                                Column {
-                                                    var show by remember { mutableStateOf(false) }
-
-                                                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                                        Button(onClick = { show = true }) {
-                                                            Text(text = "Mostrar diálogo")
-                                                        }
-                                                    }
-                                                    MyAlertDialog(
-                                                        show = show,
-                                                        onDismiss = { show = false },
-                                                        onConfirm = { Log.i("Gsus", "Click") })
-                                                }
-                         */
-                        /*
-                                                Column {
-
-                                                    var show by remember { mutableStateOf(false) }
-
-                                                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                                        Button(onClick = { show = true }) {
-                                                            Text(text = "Mostrar diálogo")
-                                                        }
-                                                    }
-                                                    MySimpleCustomDialog(
-                                                        show = show,
-                                                        onDismiss = { show = false })
-                                                }
-
-
-                         */
-                        /*
-                         Column {
-
-                            var show by remember { mutableStateOf(false) }
-
-                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                Button(onClick = { show = true }) {
-                                    Text(text = "Mostrar diálogo")
-                                }
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Button(onClick = { show = true }) {
+                                Text(text = "Mostrar diálogo")
                             }
-                             MyCustomDialog(
-                                show = show,
-                                onDismiss = { show = false })
                         }
-
-                         */
-                        /*
-                        Column {
-
-                            var show by remember { mutableStateOf(false) }
-
-                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                Button(onClick = { show = true }) {
-                                    Text(text = "Mostrar diálogo")
-                                }
-                            }
-                            MyConfirmationDialog(
-                                show = show,
-                                onDismiss = { show = false })
-                        }
-
-                         */
-
-                        // SimpleRecyclerView()
-
-                        //SuperHeroView()
-                        //SuperHeroGridView()
-                        // SuperHeroSpecialControlsView()
-                        // SuperHeroStickyView()
-                        ScaffoldExample()
+                        MyConfirmationDialog(
+                            show = show,
+                            onDismiss = { show = false })
                     }
+
+                     */
+
+                    // SimpleRecyclerView()
+
+                    //SuperHeroView()
+                    //SuperHeroGridView()
+                    // SuperHeroSpecialControlsView()
+                    // SuperHeroStickyView()
+                    // ScaffoldExample()
                 }
             }
         }
