@@ -88,6 +88,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+                    //ColorAnimationSimple()
+//                    SizeAnimation()
+                    VisibilityAnimation()
+
+                    /*
                     val navigationController = rememberNavController()
                     NavHost(
                         navController = navigationController,
@@ -117,6 +122,8 @@ class MainActivity : ComponentActivity() {
                             }
 
                     }
+
+                     */
 
 
                     // val myOptions = getOptions(listOf("Jesus", "Ejemplo", "Pikachu"))
