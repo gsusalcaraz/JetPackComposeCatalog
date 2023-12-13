@@ -90,7 +90,8 @@ class MainActivity : ComponentActivity() {
 
                     //ColorAnimationSimple()
 //                    SizeAnimation()
-                    VisibilityAnimation()
+                    // VisibilityAnimation()
+                    CossfadeExampleAnimation()
 
                     /*
                     val navigationController = rememberNavController()
